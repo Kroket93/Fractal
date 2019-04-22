@@ -1,7 +1,9 @@
+
+# Fractal
+
 A spinning fractal tree!
 Requires pygame to work
 
-# test
 
 controls:
 
