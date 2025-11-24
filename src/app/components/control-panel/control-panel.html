@@ -1,0 +1,81 @@
+<div class="control-panel">
+  <h2>Fractal Playground</h2>
+
+  <div class="control-group">
+    <label for="fractalType">Fractal Type:</label>
+    <select id="fractalType" [(ngModel)]="fractalType">
+      <option value="mandelbrot">Mandelbrot Set</option>
+      <option value="julia">Julia Set</option>
+    </select>
+  </div>
+
+  <div class="control-group">
+    <label for="iterations">
+      Iterations: <span class="value">{{ maxIterations() }}</span>
+    </label>
+    <input
+      type="range"
+      id="iterations"
+      min="50"
+      max="500"
+      [value]="maxIterations()"
+      (input)="onIterationChange($event)"
+    />
+  </div>
+
+  <div class="control-group">
+    <label for="colorScheme">Color Scheme:</label>
+    <select id="colorScheme" [(ngModel)]="colorScheme">
+      @for (scheme of colorSchemes; track scheme) {
+        <option [value]="scheme">{{ scheme | titlecase }}</option>
+      }
+    </select>
+  </div>
+
+  @if (fractalType() === 'julia') {
+    <div class="julia-controls">
+      <h3>Julia Parameters</h3>
+
+      <div class="control-group">
+        <label for="juliaReal">
+          Real: <span class="value">{{ juliaReal().toFixed(4) }}</span>
+        </label>
+        <input
+          type="range"
+          id="juliaReal"
+          min="-2"
+          max="2"
+          step="0.01"
+          [value]="juliaReal()"
+          (input)="onJuliaRealChange($event)"
+        />
+      </div>
+
+      <div class="control-group">
+        <label for="juliaImaginary">
+          Imaginary: <span class="value">{{ juliaImaginary().toFixed(4) }}</span>
+        </label>
+        <input
+          type="range"
+          id="juliaImaginary"
+          min="-2"
+          max="2"
+          step="0.01"
+          [value]="juliaImaginary()"
+          (input)="onJuliaImaginaryChange($event)"
+        />
+      </div>
+    </div>
+  }
+
+  <button class="reset-button" (click)="onResetView()">Reset View</button>
+
+  <div class="instructions">
+    <p><strong>Controls:</strong></p>
+    <ul>
+      <li>Drag to pan</li>
+      <li>Scroll to zoom</li>
+      <li>Double-click to center</li>
+    </ul>
+  </div>
+</div>

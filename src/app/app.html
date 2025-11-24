@@ -1,0 +1,21 @@
+<div class="app-container">
+  <aside class="sidebar">
+    <app-control-panel
+      [(fractalType)]="fractalType"
+      [(maxIterations)]="maxIterations"
+      [(colorScheme)]="colorScheme"
+      [(juliaReal)]="juliaReal"
+      [(juliaImaginary)]="juliaImaginary"
+      (resetView)="onResetView()"
+    />
+  </aside>
+
+  <main class="canvas-area">
+    <app-fractal-canvas
+      [fractalType]="fractalType()"
+      [maxIterations]="maxIterations()"
+      [colorScheme]="colorScheme()"
+      [juliaC]="juliaC"
+    />
+  </main>
+</div>
